@@ -74,7 +74,7 @@ else()
   endif()
 
   # No config file for this
-  option(WITH_GFLAGS "build with GFlags" ON)
+  option(WITH_GFLAGS "build with GFlags" OFF)
   if(WITH_GFLAGS)
     find_package(gflags)
     if(gflags_FOUND)
@@ -201,8 +201,8 @@ if(CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")
   endif(HAS_ALTIVEC)
 endif(CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")
 
-option(PORTABLE "build a portable binary" OFF)
-option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" OFF)
+option(PORTABLE "build a portable binary" ON)
+option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" ON)
 if(PORTABLE)
   # MSVC does not need a separate compiler flag to enable SSE4.2; if nmmintrin.h
   # is available, it is available by default.
