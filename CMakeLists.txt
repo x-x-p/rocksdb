@@ -39,7 +39,7 @@ if(POLICY CMP0042)
   cmake_policy(SET CMP0042 NEW)
 endif()
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules/")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 option(WITH_JEMALLOC "build with JeMalloc" OFF)
 option(WITH_SNAPPY "build with SNAPPY" OFF)
@@ -67,7 +67,7 @@ else()
   # No config file for this
   option(WITH_GFLAGS "build with GFlags" ON)
   if(WITH_GFLAGS)
-    find_package(gflags)
+    find_package(GFLAGS)
     if(gflags_FOUND)
       add_definitions(-DGFLAGS=1)
       include_directories(${gflags_INCLUDE_DIR})
@@ -178,8 +178,8 @@ else()
   endif()
 endif()
 
-option(PORTABLE "build a portable binary" OFF)
-option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" OFF)
+option(PORTABLE "build a portable binary" ON)
+option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" ON)
 if(PORTABLE)
   # MSVC does not need a separate compiler flag to enable SSE4.2; if nmmintrin.h
   # is available, it is available by default.
@@ -721,7 +721,7 @@ if(NOT WIN32 OR ROCKSDB_INSTALL_ON_WINDOWS)
   set(package_config_destination ${CMAKE_INSTALL_LIBDIR}/cmake/rocksdb)
 
   configure_package_config_file(
-    ${CMAKE_SOURCE_DIR}/cmake/RocksDBConfig.cmake.in RocksDBConfig.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/RocksDBConfig.cmake.in RocksDBConfig.cmake
     INSTALL_DESTINATION ${package_config_destination}
   )
 
