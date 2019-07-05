@@ -217,8 +217,8 @@ if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|AARCH64")
   endif(HAS_ARMV8_CRC)
 endif(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|AARCH64")
 
-option(PORTABLE "build a portable binary" OFF)
-option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" OFF)
+option(PORTABLE "build a portable binary" ON)
+option(FORCE_SSE42 "force building with SSE4.2, even when PORTABLE=ON" ON)
 if(PORTABLE)
   # MSVC does not need a separate compiler flag to enable SSE4.2; if nmmintrin.h
   # is available, it is available by default.
